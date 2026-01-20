@@ -38,6 +38,8 @@ CallAI(prompt) {
         
         whr := ComObject("WinHttp.WinHttpRequest.5.1")
         whr.Open("POST", url, false)
+        ; SetTimeouts(resolve, connect, send, receive) in ms: 0=infinite resolve, 60s connect, 30s send, 5min receive
+        whr.SetTimeouts(0, 60000, 30000, 300000)
         whr.SetRequestHeader("Content-Type", "application/json")
         whr.Send(jsonPayload)
         
